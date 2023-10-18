@@ -62,4 +62,11 @@ class Order extends ResourceController
             return $this->fail('Stok produk tidak mencukupi.', 400);
         }
     }
+
+    public function index()
+    {
+        $model = new OrderModel();
+        $data['order'] = $model->orderBy('order_item_id', 'DESC')->findAll();
+        return $this->respond($data);
+    }
 }
